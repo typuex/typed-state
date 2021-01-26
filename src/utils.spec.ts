@@ -1,40 +1,50 @@
 import type { IsEmpty, DeepReadonly } from './utils';
+import { check, checks } from './test-utils';
 
 {
-  // eslint-disable-next-line @typescript-eslint/ban-types, @typescript-eslint/no-unused-vars
-  const shouldBeEmpty: IsEmpty<{}> = true;
+  checks([
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    check<IsEmpty<{}>, true, true>(),
+    check<IsEmpty<{ key: string }>, false, true>(),
+    check<IsEmpty<{ key: undefined }>, false, true>(),
+    check<IsEmpty<{ key?: number }>, false, true>(),
+    check<IsEmpty<{ key: never }>, false, true>(),
+  ]);
 }
 
 {
-  const empty = {};
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const shouldBeEmpty: IsEmpty<typeof empty> = true;
-}
+  checks([
+    check<DeepReadonly<{ key: string }>, { readonly key: string }, true>(),
+    check<DeepReadonly<{ key: { nested: number } }>, { readonly key: { readonly nested: number } }, true>(),
+  ]);
 
-{
-  const notEmpty = { name: 'Oxter' };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const shouldBeEmpty: IsEmpty<typeof notEmpty> = false;
-}
+  interface Before {
+    key: {
+      a: {
+        aa: boolean;
+      };
+      b: {
+        bb: {
+          bbb: boolean;
+        };
+      };
+    };
+  }
 
-{
-  const notEmpty = { key: undefined };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const shouldBeEmpty: IsEmpty<typeof notEmpty> = false;
-}
+  interface After {
+    readonly key: {
+      readonly a: {
+        readonly aa: boolean;
+      };
+      readonly b: {
+        readonly bb: {
+          readonly bbb: boolean;
+        };
+      };
+    };
+  }
 
-{
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const readonlyfied: DeepReadonly<{ name: string }> = { name: 'Oxter' };
-
-  // This should cause error TS2540:
-  // readonlyfied.name = 'Rhabdomancy';
-}
-
-{
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const readonlyfied: DeepReadonly<{ user: { address: { street: string } } }> = { user: { address: { street: 'Carriage Drive' } } };
-
-  // This should cause error TS2540:
-  // readonlyfied.user.address.street = 'Lake Avenue';
+  checks([
+    check<DeepReadonly<Before>, After, true>(),
+  ]);
 }
