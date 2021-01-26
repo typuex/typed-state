@@ -32,7 +32,9 @@ type HasValidStateDeepDown<Module> = Module extends { state: unknown; modules: u
   : Module extends { modules: unknown }
     ? SubModulesHaveValidStateDeepDown<Module>
     : Module extends { state: unknown }
-      ? (IsEmpty<Module['state']> extends true ? false : true)
+      ? IsEmpty<Module['state']> extends true
+        ? false
+        : true
       : false;
 
 
