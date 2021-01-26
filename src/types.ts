@@ -1,4 +1,4 @@
-import type { DeepReadonly, IsEmpty, ValuesType }  from './utils';
+import type { DeepReadonly, IsEmpty, ValuesType, PickByValueExact }  from './utils';
 
 
 type NeverIncludedModuleState<Root> = Root extends { state: unknown; modules: unknown }
@@ -36,9 +36,9 @@ type HasValidStateDeepDown<Module> = Module extends { state: unknown; modules: u
       : false;
 
 
-type WithoutStateSubModuleKeys<ModuleSubModules> = Extract<keyof ModuleSubModules, keyof  {
-  [K in keyof ModuleSubModules]-?: HasValidStateDeepDown<ModuleSubModules[K]> extends true ? true : never
-}>;
+type WithoutStateSubModuleKeys<ModuleSubModules> = keyof PickByValueExact<{
+  [K in keyof ModuleSubModules]-?: HasValidStateDeepDown<ModuleSubModules[K]> extends true ? true : [never]
+}, [never]>;
 
 
 type WithStateSubModuleKeys<Module extends { state: unknown; modules: unknown }> = Exclude<(keyof Module['modules'] | keyof Module['state']), WithoutStateSubModuleKeys<Module['modules']>>;
