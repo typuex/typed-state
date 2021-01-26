@@ -1,4 +1,4 @@
-import type { DeepReadonly, IsEmpty, ValuesType }  from './util';
+import type { DeepReadonly, IsEmpty, ValuesType }  from './utils';
 
 
 type NeverIncludedModuleState<Root> = Root extends { state: unknown; modules: unknown }
