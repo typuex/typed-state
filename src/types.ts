@@ -1,7 +1,7 @@
 import type { DeepReadonly, IsEmpty, ValuesType }  from './utils';
 
 
-export type NeverIncludedModuleState<Root> = Root extends { state: unknown; modules: unknown }
+type NeverIncludedModuleState<Root> = Root extends { state: unknown; modules: unknown }
   ? {
     [K in (keyof Root['modules'] | keyof Root['state'])]-?: K extends keyof Root['modules']
       ? NeverIncludedModuleState<Root['modules'][K]>
@@ -18,14 +18,14 @@ export type NeverIncludedModuleState<Root> = Root extends { state: unknown; modu
       : never;
 
 
-export type SubModulesHaveValidStateDeepDown<Module extends { modules: unknown }> = ValuesType<{
+type SubModulesHaveValidStateDeepDown<Module extends { modules: unknown }> = ValuesType<{
   [K in keyof Module['modules']]-?: HasValidStateDeepDown<Module['modules'][K]>;
 }> extends true
   ? true
   : false;
 
 
-export type HasValidStateDeepDown<Module> = Module extends { state: unknown; modules: unknown }
+type HasValidStateDeepDown<Module> = Module extends { state: unknown; modules: unknown }
   ? Exclude<keyof Module['state'], keyof Module['modules']> extends never
     ? SubModulesHaveValidStateDeepDown<Module>
     : true
@@ -36,12 +36,12 @@ export type HasValidStateDeepDown<Module> = Module extends { state: unknown; mod
       : false;
 
 
-export type WithoutStateSubModuleKeys<ModuleSubModules> = Extract<keyof ModuleSubModules, keyof  {
+type WithoutStateSubModuleKeys<ModuleSubModules> = Extract<keyof ModuleSubModules, keyof  {
   [K in keyof ModuleSubModules]-?: HasValidStateDeepDown<ModuleSubModules[K]> extends true ? true : never
 }>;
 
 
-export type WithStateSubModuleKeys<Module extends { state: unknown; modules: unknown }> = Exclude<(keyof Module['modules'] | keyof Module['state']), WithoutStateSubModuleKeys<Module['modules']>>;
+type WithStateSubModuleKeys<Module extends { state: unknown; modules: unknown }> = Exclude<(keyof Module['modules'] | keyof Module['state']), WithoutStateSubModuleKeys<Module['modules']>>;
 
 
 export type ModuleState<Root> = Root extends { state: unknown; modules: unknown }
