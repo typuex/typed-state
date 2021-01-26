@@ -45,6 +45,11 @@ rules:
   no-void:
     - error
     - allowAsStatement: true
+  object-curly-spacing:
+    - 2
+    - always
+  key-spacing:
+    - 2
   semi:
     - off
   "@typescript-eslint/semi":
