@@ -1,0 +1,53 @@
+{
+  "name": "@typuex/typed-state",
+  "version": "0.1.0",
+  "description": "Adds type to vuex store state.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/typuex/typed-state.git"
+  },
+  "keywords": [
+    "vuex",
+    "typescript",
+    "type-helper",
+    "vuex-types",
+    "vuex-typescript",
+    "typescript-vuex",
+    "vuex-ts",
+    "ts-vuex",
+    "vuex-typed",
+    "typed-vuex",
+    "vuex-types",
+    "types-vuex",
+    "vuex-state",
+    "vuex-state-typescript",
+    "typescript-vuex-state",
+    "vuex-state-ts",
+    "ts-vuex-state",
+    "vuex-state-typed",
+    "typed-vuex-state",
+    "vuex-typed-state"
+  ],
+  "author": "xeptore <xeptore@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/typuex/typed-state/issues"
+  },
+  "homepage": "https://github.com/typuex/typed-state#readme",
+  "devDependencies": {
+    "@tsconfig/node14": "^1.0.0",
+    "@types/node": "^14.14.22",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "eslint": "^7.18.0",
+    "typescript": "^4.1.3",
+    "utility-types": "^3.10.0"
+  },
+  "peerDependencies": {
+    "typescript": "^4.1.3"
+  }
+}
