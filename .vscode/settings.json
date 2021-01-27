@@ -1,0 +1,12 @@
+{
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "eslint.packageManager": "pnpm",
+  "eslint.codeActionsOnSave.mode": "all",
+  "eslint.debug": true,
+  "editor.formatOnSave": true,
+  "eslint.lintTask.enable": true,
+  "eslint.run": "onSave",
+  "editor.tabSize": 2,
+  "npm.packageManager": "pnpm"
+}
