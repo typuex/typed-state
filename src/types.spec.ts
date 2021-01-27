@@ -3,6 +3,54 @@ import { check, checks } from './test-utils';
 
 
 {
+  const store = {};
+
+  checks([
+    check<ModuleState<typeof store>, never, true>(),
+  ]);
+}
+
+{
+  const store = {
+    state: {},
+    modules: {
+      a: {
+        modules: {
+          b: {
+            modules: {
+              c: {
+                state: {},
+                modules: {
+                  d: {
+                    modules: {
+                      e: {
+                        modules: {
+                          // f: {
+                          //   state: {},
+                          // },
+                        },
+                      },
+                      f: {
+                        state: {},
+                      },
+                      g: {},
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  checks([
+    check<ModuleState<typeof store>, never, true>(),
+  ]);
+}
+
+{
   const store = {
     state: {
       domain: 'ondricka.net',
@@ -35,6 +83,57 @@ import { check, checks } from './test-utils';
         address: {
           street: string;
           country: string;
+        };
+      };
+    };
+  }
+
+  checks([
+    check<ModuleState<typeof store>, Expected, true>(),
+  ]);
+}
+
+{
+  const store = {
+    state: {
+      a: {
+        b: {
+          c: 'c',
+        },
+      },
+    },
+    modules: {
+      m: {
+        modules: {
+          d: {
+            state: {},
+          },
+          z: {
+            modules: {
+              p: {
+                state: {
+                  l: 'l',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  interface Expected {
+    state: {
+      a: {
+        b: {
+          c: string;
+        };
+      };
+      m: {
+        z: {
+          p: {
+            l: string;
+          };
         };
       };
     };
@@ -184,6 +283,14 @@ import { check, checks } from './test-utils';
 }
 
 {
+  const store = {};
+
+  checks([
+    check<DeepReadonlyModuleState<typeof store>, never, true>(),
+  ]);
+}
+
+{
   const store = {
     state: {
       domain: 'ondricka.net',
@@ -216,6 +323,97 @@ import { check, checks } from './test-utils';
         readonly address: {
           readonly street: string;
           readonly country: string;
+        };
+      };
+    };
+  }
+
+  checks([
+    check<DeepReadonlyModuleState<typeof store>, Expected, true>(),
+  ]);
+}
+
+{
+  const store = {
+    state: {},
+    modules: {
+      a: {
+        modules: {
+          b: {
+            modules: {
+              c: {
+                state: {},
+                modules: {
+                  d: {
+                    modules: {
+                      e: {
+                        modules: {
+                          // f: {
+                          //   state: {},
+                          // },
+                        },
+                      },
+                      f: {
+                        state: {},
+                      },
+                      g: {},
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  checks([
+    check<DeepReadonlyModuleState<typeof store>, never, true>(),
+  ]);
+}
+
+{
+  const store = {
+    state: {
+      a: {
+        b: {
+          c: 'c',
+        },
+      },
+    },
+    modules: {
+      m: {
+        modules: {
+          d: {
+            state: {},
+          },
+          z: {
+            modules: {
+              p: {
+                state: {
+                  l: 'l',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  interface Expected {
+    readonly state: {
+      readonly a: {
+        readonly b: {
+          readonly c: string;
+        };
+      };
+      readonly m: {
+        readonly z: {
+          readonly p: {
+            readonly l: string;
+          };
         };
       };
     };
