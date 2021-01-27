@@ -2,7 +2,7 @@
   "name": "@typuex/typed-state",
   "version": "0.1.0",
   "description": "Adds type to vuex store state.",
-  "main": "./dist/index.js",
+  "main": "./dist/index.d.ts",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
