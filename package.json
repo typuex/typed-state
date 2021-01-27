@@ -4,7 +4,10 @@
   "description": "Adds type to vuex store state.",
   "main": "index.ts",
   "scripts": {
-    "test": "tsc --noEmit --project tsconfig.json"
+    "test": "tsc --noEmit --project tsconfig.json",
+    "build": "npm-run-all --sequential clean-dist compile",
+    "clean-dist": "rimraf ./dist",
+    "compile": "tsc --project tsconfig.json"
   },
   "repository": {
     "type": "git",
