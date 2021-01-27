@@ -8,10 +8,11 @@
     "dist"
   ],
   "scripts": {
-    "test": "tsc --noEmit --project tsconfig.json",
+    "test": "tsc --project tsconfig.test.json",
     "build": "npm-run-all --sequential clean-dist compile",
     "clean-dist": "rimraf ./dist",
-    "compile": "tsc --project tsconfig.json"
+    "compile": "tsc --project tsconfig.build.json",
+    "preversion": "npm-run-all --sequential test build"
   },
   "repository": {
     "type": "git",
