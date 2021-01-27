@@ -17,6 +17,21 @@ type SubModuleState<SubModule> = SubModule extends { state: unknown; modules: un
       }
       : never;
 
+type DeepReadonlySubModuleState<SubModule> = SubModule extends { state: unknown; modules: unknown }
+  ? {
+    readonly [K in ExcludeWithoutStateKeys<SubModule>]-?: K extends keyof SubModule['modules']
+      ? DeepReadonlySubModuleState<SubModule['modules'][K]>
+      : K extends keyof SubModule['state'] ? DeepReadonly<SubModule['state'][K]> : never;
+  }
+  : SubModule extends { state: unknown }
+    ? {
+      readonly [K in keyof SubModule['state']]-?:  DeepReadonly<SubModule['state'][K]>;
+    }
+    : SubModule extends { modules: unknown }
+      ? {
+        readonly [K in keyof SubModule['modules']]-?: DeepReadonlySubModuleState<SubModule['modules'][K]>
+      }
+      : never;
 
 type SubModulesHaveValidStateDeepDown<Module extends { modules: unknown }> = ValuesType<{
   [K in keyof Module['modules']]-?: HasValidStateDeepDown<Module['modules'][K]>;
@@ -75,7 +90,7 @@ export type DeepReadonlyModuleState<Root> = Root extends { readonly state: unkno
   ? {
     readonly state: {
       readonly [K in ExcludeWithoutStateKeys<Root>]-?: K extends keyof Root['modules']
-        ? DeepReadonlyModuleState<Root['modules'][K]>
+        ? DeepReadonlySubModuleState<Root['modules'][K]>
         : K extends keyof Root['state'] ? DeepReadonly<Root['state'][K]> : never;
     };
   }
@@ -88,7 +103,7 @@ export type DeepReadonlyModuleState<Root> = Root extends { readonly state: unkno
     : Root extends { readonly modules: unknown }
       ? {
         readonly state: {
-          readonly [K in keyof Root['modules']]-?: DeepReadonlyModuleState<Root['modules'][K]>
+          readonly [K in keyof Root['modules']]-?: DeepReadonlySubModuleState<Root['modules'][K]>
         };
       }
       : never;
