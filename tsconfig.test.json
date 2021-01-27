@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.common.json",
+  "files": [
+    "./src/types.spec.ts",
+    "./src/utils.spec.ts"
+  ],
+  "compilerOptions": {
+    "noEmit": true
+  }
+}
