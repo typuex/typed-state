@@ -103,6 +103,31 @@ import { check, checks } from './test-utils';
 
 {
   const store = {
+    modules: {
+      a: {
+        state: {},
+      },
+      b: {
+        state: {
+          name: 'name',
+        },
+      },
+    },
+  };
+
+  interface Expected {
+    b: {
+      name: string;
+    };
+  }
+
+  checks([
+    check<ModuleState<typeof store>, Expected, true>(),
+  ]);
+}
+
+{
+  const store = {
     state: {},
     modules: {
       c: {
