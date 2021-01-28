@@ -9,3 +9,11 @@ import { check, checks } from './test-utils';
     check<RootState<typeof store>, never, true>(),
   ]);
 }
+
+{
+  const store = {};
+
+  checks([
+    check<RootState<typeof store>, never, true>(),
+  ]);
+}
