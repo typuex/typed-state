@@ -31,3 +31,13 @@ import { check, checks } from './test-utils';
     check<RootState<typeof store>, Expected, true>(),
   ]);
 }
+
+{
+  const store = {
+    modules: {},
+  };
+
+  checks([
+    check<RootState<typeof store>, never, true>(),
+  ]);
+}
