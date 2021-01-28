@@ -409,3 +409,45 @@ import { check, checks } from './test-utils';
     check<ModuleState<typeof store>, never, true>(),
   ]);
 }
+
+{
+  const store = {
+    state: {
+      domain: 'ondricka.net',
+      user: {
+        // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+        age: 45,
+        someBool: true,
+        name: {
+          first: 'Darius',
+          last: 'Hilpert',
+        },
+        address: {
+          street: 'Meda Cove Suite',
+          country: 'USA',
+        },
+      },
+    },
+  };
+
+  interface Expected {
+    domain: string;
+    user: {
+      name: {
+        first: string;
+        last: string;
+      };
+      age: number;
+      someBool: boolean;
+      address: {
+        street: string;
+        country: string;
+      };
+    };
+  }
+
+  checks([
+    check<ModuleState<typeof store>, Expected, true>(),
+  ]);
+}
+
