@@ -100,3 +100,312 @@ import { check, checks } from './test-utils';
     check<ModuleState<typeof store>, never, true>(),
   ]);
 }
+
+{
+  const store = {
+    state: {},
+    modules: {
+      c: {
+        modules: {
+          d: {
+            modules: {
+              e: {
+                modules: {
+                  f: {
+                    state: {},
+                    modules: {
+                      g: {},
+                    },
+                  },
+                },
+              },
+            },
+            state: {},
+          },
+        },
+      },
+      a: {
+        modules: {
+          b: {
+            modules: {
+              c: {
+                state: {},
+                modules: {
+                  d: {
+                    modules: {
+                      e: {
+                        modules: {
+                          f: {
+                            state: {},
+                            modules: {
+                              c: {
+                                modules: {
+                                  d: {
+                                    modules: {
+                                      e: {
+                                        modules: {
+                                          f: {
+                                            state: {},
+                                            modules: {
+                                              g: {
+                                                modules: {
+                                                  c: {
+                                                    modules: {
+                                                      d: {
+                                                        modules: {
+                                                          e: {
+                                                            modules: {
+                                                              f: {
+                                                                state: {},
+                                                                modules: {
+                                                                  g: {},
+                                                                },
+                                                              },
+                                                            },
+                                                          },
+                                                        },
+                                                        state: {},
+                                                      },
+                                                    },
+                                                  },
+                                                  a: {
+                                                    modules: {
+                                                      b: {
+                                                        modules: {
+                                                          c: {
+                                                            state: {},
+                                                            modules: {
+                                                              d: {
+                                                                modules: {
+                                                                  e: {
+                                                                    modules: {
+                                                                      f: {
+                                                                        state: {},
+                                                                        modules: {
+                                                                          state: {},
+                                                                          modules: {
+                                                                            c: {
+                                                                              modules: {
+                                                                                d: {
+                                                                                  modules: {
+                                                                                    e: {
+                                                                                      modules: {
+                                                                                        f: {
+                                                                                          state: {},
+                                                                                          modules: {
+                                                                                            g: {},
+                                                                                          },
+                                                                                        },
+                                                                                      },
+                                                                                    },
+                                                                                  },
+                                                                                  state: {},
+                                                                                },
+                                                                              },
+                                                                            },
+                                                                            a: {
+                                                                              modules: {
+                                                                                b: {
+                                                                                  modules: {
+                                                                                    c: {
+                                                                                      state: {},
+                                                                                      modules: {
+                                                                                        d: {
+                                                                                          modules: {
+                                                                                            e: {
+                                                                                              modules: {
+                                                                                                f: {
+                                                                                                  state: {},
+                                                                                                  modules: {
+                                                                                                    c: {
+                                                                                                      modules: {
+                                                                                                        d: {
+                                                                                                          modules: {
+                                                                                                            e: {
+                                                                                                              modules: {
+                                                                                                                f: {
+                                                                                                                  state: {},
+                                                                                                                  modules: {
+                                                                                                                    g: {
+                                                                                                                      modules: {
+                                                                                                                        c: {
+                                                                                                                          modules: {
+                                                                                                                            d: {
+                                                                                                                              modules: {
+                                                                                                                                e: {
+                                                                                                                                  modules: {
+                                                                                                                                    f: {
+                                                                                                                                      state: {},
+                                                                                                                                      modules: {
+                                                                                                                                        g: {},
+                                                                                                                                      },
+                                                                                                                                    },
+                                                                                                                                  },
+                                                                                                                                },
+                                                                                                                              },
+                                                                                                                              state: {},
+                                                                                                                            },
+                                                                                                                          },
+                                                                                                                        },
+                                                                                                                        a: {
+                                                                                                                          modules: {
+                                                                                                                            b: {
+                                                                                                                              modules: {
+                                                                                                                                c: {
+                                                                                                                                  state: {},
+                                                                                                                                  modules: {
+                                                                                                                                    d: {
+                                                                                                                                      modules: {
+                                                                                                                                        e: {
+                                                                                                                                          modules: {
+                                                                                                                                            f: {
+                                                                                                                                              state: {},
+                                                                                                                                            },
+                                                                                                                                          },
+                                                                                                                                        },
+                                                                                                                                        f: {
+                                                                                                                                          state: {},
+                                                                                                                                        },
+                                                                                                                                        g: {},
+                                                                                                                                      },
+                                                                                                                                    },
+                                                                                                                                  },
+                                                                                                                                },
+                                                                                                                              },
+                                                                                                                            },
+                                                                                                                          },
+                                                                                                                        },
+                                                                                                                      },
+                                                                                                                    },
+                                                                                                                  },
+                                                                                                                },
+                                                                                                              },
+                                                                                                            },
+                                                                                                          },
+                                                                                                          state: {},
+                                                                                                        },
+                                                                                                      },
+                                                                                                    },
+                                                                                                    a: {
+                                                                                                      modules: {
+                                                                                                        b: {
+                                                                                                          modules: {
+                                                                                                            c: {
+                                                                                                              state: {},
+                                                                                                              modules: {
+                                                                                                                d: {
+                                                                                                                  modules: {
+                                                                                                                    e: {
+                                                                                                                      modules: {
+                                                                                                                        f: {
+                                                                                                                          state: {},
+                                                                                                                        },
+                                                                                                                      },
+                                                                                                                    },
+                                                                                                                    f: {
+                                                                                                                      state: {},
+                                                                                                                    },
+                                                                                                                    g: {},
+                                                                                                                  },
+                                                                                                                },
+                                                                                                              },
+                                                                                                            },
+                                                                                                          },
+                                                                                                        },
+                                                                                                      },
+                                                                                                    },
+                                                                                                  },
+                                                                                                },
+                                                                                              },
+                                                                                            },
+                                                                                            f: {
+                                                                                              state: {},
+                                                                                            },
+                                                                                            g: {},
+                                                                                          },
+                                                                                        },
+                                                                                      },
+                                                                                    },
+                                                                                  },
+                                                                                },
+                                                                              },
+                                                                            },
+                                                                          },
+                                                                        },
+                                                                      },
+                                                                    },
+                                                                  },
+                                                                  f: {
+                                                                    state: {},
+                                                                  },
+                                                                  g: {},
+                                                                },
+                                                              },
+                                                            },
+                                                          },
+                                                        },
+                                                      },
+                                                    },
+                                                  },
+                                                },
+                                              },
+                                            },
+                                          },
+                                        },
+                                      },
+                                    },
+                                    state: {},
+                                  },
+                                },
+                              },
+                              a: {
+                                modules: {
+                                  b: {
+                                    modules: {
+                                      c: {
+                                        state: {},
+                                        modules: {
+                                          d: {
+                                            modules: {
+                                              e: {
+                                                modules: {
+                                                  f: {
+                                                    state: {},
+                                                  },
+                                                },
+                                              },
+                                              f: {
+                                                state: {},
+                                              },
+                                              g: {},
+                                            },
+                                          },
+                                        },
+                                      },
+                                    },
+                                  },
+                                },
+                              },
+                            },
+                          },
+                        },
+                      },
+                      f: {
+                        state: {},
+                      },
+                      g: {},
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  checks([
+    check<ModuleState<typeof store>, never, true>(),
+  ]);
+}
