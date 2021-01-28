@@ -23,12 +23,8 @@ import { check, checks } from './test-utils';
     state: {},
   };
 
-  interface Expected {
-    state: never;
-  }
-
   checks([
-    check<RootState<typeof store>, Expected, true>(),
+    check<RootState<typeof store>, never, true>(),
   ]);
 }
 
@@ -48,12 +44,8 @@ import { check, checks } from './test-utils';
     modules: {},
   };
 
-  interface Expected {
-    state: never;
-  }
-
   checks([
-    check<RootState<typeof store>, Expected, true>(),
+    check<RootState<typeof store>, never, true>(),
   ]);
 }
 
