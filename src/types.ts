@@ -145,3 +145,6 @@ export type DeepReadonlyModuleState<Root> = Root extends { readonly state: unkno
           };
         }
       : never;
+
+
+export type RootState<RootModule> = never;
