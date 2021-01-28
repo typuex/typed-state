@@ -578,3 +578,150 @@ import { check, checks } from './test-utils';
   ]);
 }
 
+{
+  const store = {
+    state: {
+      x: 'Heteronym',
+      a: 'Inception',
+      b: {
+        y: false,
+      },
+    },
+    modules: {
+      k: {
+        state: {
+          // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+          o: 12.5,
+        },
+        modules: {
+          a: {
+            state: {
+              y: true,
+            },
+          },
+          b: {
+            state: {
+              k: 'k',
+            },
+            modules: {
+              c: {
+                state: {
+                  j: true,
+                },
+              },
+              m: {
+                state: {
+                  l: true,
+                  w: [false],
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  interface Expected {
+    x: string;
+    a: string;
+    b: {
+      y: boolean;
+    };
+    k: {
+      b: {
+        c: {
+          j: boolean;
+        };
+        m: {
+          w: boolean[];
+          l: boolean;
+        };
+        k: string;
+      };
+      o: number;
+      a: {
+        y: boolean;
+      };
+    };
+  }
+
+  checks([
+    check<ModuleState<typeof store>, Expected, true>(),
+  ]);
+}
+
+{
+  const store = {
+    state: {
+      x: 'Heteronym',
+      a: 'Inception',
+      b: {
+        y: false,
+      },
+    },
+    modules: {
+      k: {
+        state: {
+          // eslint-disable-next-line @typescript-eslint/no-magic-numbers
+          o: 12.5,
+        },
+        modules: {
+          b: {
+            state: {
+              e: 'e',
+            },
+            modules: {
+              c: {
+                state: {
+                  j: true,
+                },
+              },
+              m: {
+                state: {
+                  l: true,
+                  w: [false],
+                  y: {
+                    m: {
+                      n: 'n',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  interface Expected {
+    x: string;
+    a: string;
+    b: {
+      y: boolean;
+    };
+    k: {
+      b: {
+        e: string;
+        c: {
+          j: boolean;
+        };
+        m: {
+          w: boolean[];
+          l: boolean;
+          y: {
+            m: {
+              n: string;
+            };
+          };
+        };
+      };
+      o: number;
+    };
+  }
+
+  checks([
+    check<ModuleState<typeof store>, Expected, true>(),
+  ]);
+}
