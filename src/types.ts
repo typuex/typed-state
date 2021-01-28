@@ -147,4 +147,6 @@ export type DeepReadonlyModuleState<Root> = Root extends { readonly state: unkno
       : never;
 
 
-export type RootState<RootModule> = never;
+export type RootState<RootModule> = RootModule extends { state: infer S }
+  ? [IsEmpty<S>] extends [true] ? { state: never } : S
+  : never;
