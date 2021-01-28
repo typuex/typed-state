@@ -1,5 +1,3 @@
-export type { ValuesType, PickByValueExact } from 'utility-types';
-
 export type DeepReadonly<T> = {
   readonly [K in keyof T]-?: DeepReadonly<T[K]>;
 };
