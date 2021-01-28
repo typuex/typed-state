@@ -56,3 +56,19 @@ import { check, checks } from './test-utils';
     check<RootState<typeof store>, Expected, true>(),
   ]);
 }
+
+{
+  const store = {
+    state: {
+      a: 'a',
+    },
+  };
+
+  interface Expected {
+    a: string;
+  }
+
+  checks([
+    check<RootState<typeof store>, Expected, true>(),
+  ]);
+}
