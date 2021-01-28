@@ -6,13 +6,7 @@ type OnlySubModules<SubModules> =
     ? never
     : {
       [SubModuleKey in keyof SubModules]-?: ModuleState<SubModules[SubModuleKey]>
-    } extends infer X
-      ? X extends { [SubModuleKey in keyof SubModules]: infer V }
-        ? V extends never
-          ? never
-          : X
-        : never
-      : never;
+    };
 
 
 type OnlyState<State> = [IsEmpty<State>] extends [true] ? never : State;
@@ -33,16 +27,38 @@ type SubModulesAndState<SubModules, State> =
             :never
       };
 
+/**
+ * Returns keys of O with values other than `never`.
+ *
+ * Credit: https://github.com/millsp/ts-toolbelt/blob/8915a03251e275d06117eb93833dd86adeec50ba/src/Object/FilterKeys.ts#L7-L12
+ */
+type NeverKeys<O> = {
+  [K in keyof O]-?: {
+    0: never;
+    1: K;
+  }[O[K] extends never ? 1 : 0]
+}[keyof O];
+
+type NonNeverKeys<O> = Exclude<keyof O, NeverKeys<O>>;
+
 
 export type ModuleState<RootModule> =
   RootModule extends { state: infer State; modules: infer SubModules }
     ? SubModulesAndState<SubModules, State>
     // only have state property
-    :RootModule extends { state: infer State }
+    : RootModule extends { state: infer State }
       // empty ({}) state has no value
       ? OnlyState<State>
       // only have modules property
       : RootModule extends { modules: infer SubModules }
         // empty ({}) modules has no value
-        ? OnlySubModules<SubModules>
+        ? [IsEmpty<SubModules>] extends [true]
+          ? never
+          : OnlySubModules<SubModules> extends infer X
+            ? { [K in NonNeverKeys<X>]: X[K] } extends infer I
+              ? [IsEmpty<I>] extends [false]
+                ? I
+                : never
+              : never
+            : never
         : never;
