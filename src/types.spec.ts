@@ -1,4 +1,4 @@
-import type { RootState } from './types';
+import type { ModuleState } from './types';
 import { check, checks } from './test-utils';
 
 
@@ -6,7 +6,7 @@ import { check, checks } from './test-utils';
   const store = undefined;
 
   checks([
-    check<RootState<typeof store>, never, true>(),
+    check<ModuleState<typeof store>, never, true>(),
   ]);
 }
 
@@ -14,7 +14,7 @@ import { check, checks } from './test-utils';
   const store = {};
 
   checks([
-    check<RootState<typeof store>, never, true>(),
+    check<ModuleState<typeof store>, never, true>(),
   ]);
 }
 
@@ -24,7 +24,7 @@ import { check, checks } from './test-utils';
   };
 
   checks([
-    check<RootState<typeof store>, never, true>(),
+    check<ModuleState<typeof store>, never, true>(),
   ]);
 }
 
@@ -34,7 +34,7 @@ import { check, checks } from './test-utils';
   };
 
   checks([
-    check<RootState<typeof store>, never, true>(),
+    check<ModuleState<typeof store>, never, true>(),
   ]);
 }
 
@@ -45,7 +45,7 @@ import { check, checks } from './test-utils';
   };
 
   checks([
-    check<RootState<typeof store>, never, true>(),
+    check<ModuleState<typeof store>, never, true>(),
   ]);
 }
 
@@ -61,7 +61,7 @@ import { check, checks } from './test-utils';
   }
 
   checks([
-    check<RootState<typeof store>, Expected, true>(),
+    check<ModuleState<typeof store>, Expected, true>(),
   ]);
 }
 
@@ -83,7 +83,7 @@ import { check, checks } from './test-utils';
   }
 
   checks([
-    check<RootState<typeof store>, Expected, true>(),
+    check<ModuleState<typeof store>, Expected, true>(),
   ]);
 }
 
@@ -97,6 +97,6 @@ import { check, checks } from './test-utils';
   };
 
   checks([
-    check<RootState<typeof store>, never, true>(),
+    check<ModuleState<typeof store>, never, true>(),
   ]);
 }

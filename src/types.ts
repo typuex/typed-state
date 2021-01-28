@@ -1,7 +1,7 @@
 import type { IsEmpty }  from './utils';
 
 
-export type RootState<RootModule> =
+export type ModuleState<RootModule> =
   // only have state property
   RootModule extends { state: infer State }
     // empty ({}) state has no value
@@ -12,7 +12,7 @@ export type RootState<RootModule> =
       ? [IsEmpty<SubModules>] extends [true]
         ? never
         : {
-          [SubModuleKey in keyof SubModules]-?: RootState<SubModules[SubModuleKey]>
+          [SubModuleKey in keyof SubModules]-?: ModuleState<SubModules[SubModuleKey]>
         } extends infer X
           ? X extends { [SubModuleKey in keyof SubModules]: infer V }
             ? V extends never
