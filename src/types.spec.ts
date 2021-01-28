@@ -451,3 +451,49 @@ import { check, checks } from './test-utils';
   ]);
 }
 
+{
+  const store = {
+    state: {
+      a: {
+        b: {
+          c: 'c',
+        },
+      },
+    },
+    modules: {
+      m: {
+        modules: {
+          z: {
+            modules: {
+              p: {
+                state: {
+                  l: 'l',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  interface Expected {
+    a: {
+      b: {
+        c: string;
+      };
+    };
+    m: {
+      z: {
+        p: {
+          l: string;
+        };
+      };
+    };
+  }
+
+  checks([
+    check<ModuleState<typeof store>, Expected, true>(),
+  ]);
+}
+
