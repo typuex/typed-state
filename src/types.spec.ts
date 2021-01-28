@@ -522,3 +522,59 @@ import { check, checks } from './test-utils';
   ]);
 }
 
+{
+  const store = {
+    state: {
+      x: 'Heteronym',
+      a: 'Inception',
+      b: {
+        y: false,
+      },
+    },
+    modules: {
+      k: {
+        modules: {
+          b: {
+            modules: {
+              c: {
+                state: {
+                  j: true,
+                },
+              },
+              m: {
+                state: {
+                  l: true,
+                  w: [false],
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  interface Expected {
+    x: string;
+    a: string;
+    b: {
+      y: boolean;
+    };
+    k: {
+      b: {
+        c: {
+          j: boolean;
+        };
+        m: {
+          w: boolean[];
+          l: boolean;
+        };
+      };
+    };
+  }
+
+  checks([
+    check<ModuleState<typeof store>, Expected, true>(),
+  ]);
+}
+
