@@ -14,7 +14,9 @@ type OnlySubModules<SubModules> =
         : never
       : never;
 
+
 type OnlyState<State> = [IsEmpty<State>] extends [true] ? never : State;
+
 
 // IDEA: here `Merge` or `Override`-like types can be used.
 type SubModulesAndState<SubModules, State> =
